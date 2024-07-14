@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOTD Challenge: Vintage Vibes</title>
+    <style>
+        /* General styling for the entire app */
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: rgb(235, 84, 139);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px; /* Adjusted the max-width for a smaller container */
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        /* Headings */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: rgb(238, 5, 95);
+            font-family: 'Georgia', serif;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Paragraphs */
+        p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgb(25, 89, 59);
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        /* Forms */
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color:blue;
+        }
+
+        input[type="text"], input[type="file"], textarea, button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        input[type="text"]:focus, input[type="file"]:focus, textarea:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
+        .image-container {
+            width: 50%;
+            padding-top: 30%; /* Reduced aspect ratio to make the image container smaller */
+            position: relative;
+            margin: 0 auto 20px auto; /* Center the image container */
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            background-color: #f4f4f9;
+            height: 30%;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: blue;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: green;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OOTD Challenge: Vintage Vibes</h1>
+        <p>Show off your best vintage-inspired outfit for a chance to earn points and win exclusive rewards!</p>
+
+        <h2>Submit Your Entry</h2>
+        <form id="entryForm">
+            <label>
+                Photo:
+                <div class="image-container" id="imagePreviewContainer">
+                    <img id="imagePreview" src="" alt="Image Preview" style="display: none;" />
+                </div>
+                <input type="file" id="photo" accept="image/*" required />
+            </label>
+            <label>
+                Caption:
+                <textarea id="caption" required></textarea>
+            </label>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+    document.getElementById('entryForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var photo = document.getElementById('photo').files[0];
+        var caption = document.getElementById('caption').value;
+        console.log('Submit Entry:', { photo, caption });
+        // Handle form submission logic here
+        
+        // Redirect to a new page
+        window.location.href = 'post.html'; // Replace 'newpage.html' with your actual new page file
+    });
+
+
+        document.getElementById('photo').addEventListener('change', function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
+</body>
+</html>
